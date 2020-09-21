@@ -2,6 +2,7 @@
 msal
 azure-core
 azure-identity
+msrest
 
 ### Testing packages
 pytest
