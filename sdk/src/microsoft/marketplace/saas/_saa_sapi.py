@@ -17,16 +17,19 @@ if TYPE_CHECKING:
 
     from azure.core.credentials import TokenCredential
 
-from ._configuration import MeteringAPIConfiguration
-from .operations import MeteringOperationsOperations
+from ._configuration import SaaSAPIConfiguration
+from .operations import FulfillmentOperationsOperations
+from .operations import SubscriptionOperationsOperations
 from . import models
 
 
-class MeteringAPI(object):
-    """With the commercial marketplace metering service, you can create software as a service (SaaS) and managed application offers which charge according to non-standard units. Before publishing an offer to the commercial marketplace, you define the billing dimensions such as bandwidth, tickets, or emails processed. Customers then pay according to their consumption of these dimensions, with your system informing Microsoft via the commercial marketplace metering service API of billable events.
+class SaaSAPI(object):
+    """This spec details the APIs that enable partners to sell their SaaS applications in the AppSource marketplace and the Azure Marketplace. These APIs are a requirement for transactable SaaS offers on the AppSource and Azure Marketplace.
 
-    :ivar metering_operations: MeteringOperationsOperations operations
-    :vartype metering_operations: microsoft.marketplace.saas.operations.MeteringOperationsOperations
+    :ivar fulfillment_operations: FulfillmentOperationsOperations operations
+    :vartype fulfillment_operations: microsoft.marketplace.saas.operations.FulfillmentOperationsOperations
+    :ivar subscription_operations: SubscriptionOperationsOperations operations
+    :vartype subscription_operations: microsoft.marketplace.saas.operations.SubscriptionOperationsOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
     :param str base_url: Service URL
@@ -41,7 +44,7 @@ class MeteringAPI(object):
         # type: (...) -> None
         if not base_url:
             base_url = 'https://marketplaceapi.microsoft.com/api'
-        self._config = MeteringAPIConfiguration(credential, **kwargs)
+        self._config = SaaSAPIConfiguration(credential, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
@@ -49,7 +52,9 @@ class MeteringAPI(object):
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-        self.metering_operations = MeteringOperationsOperations(
+        self.fulfillment_operations = FulfillmentOperationsOperations(
+            self._client, self._config, self._serialize, self._deserialize)
+        self.subscription_operations = SubscriptionOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
@@ -57,7 +62,7 @@ class MeteringAPI(object):
         self._client.close()
 
     def __enter__(self):
-        # type: () -> MeteringAPI
+        # type: () -> SaaSAPI
         self._client.__enter__()
         return self
 

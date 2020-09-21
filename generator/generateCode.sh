@@ -1,6 +1,6 @@
 docker build -t local/autorestpython .
-
-generated_code_dir="../sdk/src/microsoft/marketplace"
+current_dir=$(pwd)
+generated_code_dir="$current_dir/../sdk/src/microsoft/marketplace"
 
 if [[ -d $generated_code_dir ]]; then
     echo "Cleaning out previously generated files"
@@ -9,8 +9,6 @@ if [[ -d $generated_code_dir ]]; then
 fi
 
 mkdir -p "../sdk/src/"
-
-current_dir=$(pwd)
 
 docker run --rm --name pythonautorest \
     -v $current_dir/temp/saas:/out \

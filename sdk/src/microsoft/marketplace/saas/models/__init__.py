@@ -7,34 +7,65 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import UsageEvent
-    from ._models_py3 import UsageEventBadRequestResponse
-    from ._models_py3 import UsageEventBadRequestResponseDetail
-    from ._models_py3 import UsageEventConflictResponse
-    from ._models_py3 import UsageEventConflictResponseAdditionalInfo
-    from ._models_py3 import UsageEventOkResponse
+    from ._models_py3 import AadIdentifier
+    from ._models_py3 import FulfillmentInternalServerErrorResponse
+    from ._models_py3 import FulfillmentInternalServerErrorResponseError
+    from ._models_py3 import Operation
+    from ._models_py3 import OperationList
+    from ._models_py3 import Plan
+    from ._models_py3 import ResolvedSubscription
+    from ._models_py3 import SubscriberPlan
+    from ._models_py3 import Subscription
+    from ._models_py3 import SubscriptionPlans
+    from ._models_py3 import SubscriptionTerm
+    from ._models_py3 import SubscriptionsResponse
+    from ._models_py3 import UpdateOperation
 except (SyntaxError, ImportError):
-    from ._models import UsageEvent  # type: ignore
-    from ._models import UsageEventBadRequestResponse  # type: ignore
-    from ._models import UsageEventBadRequestResponseDetail  # type: ignore
-    from ._models import UsageEventConflictResponse  # type: ignore
-    from ._models import UsageEventConflictResponseAdditionalInfo  # type: ignore
-    from ._models import UsageEventOkResponse  # type: ignore
+    from ._models import AadIdentifier  # type: ignore
+    from ._models import FulfillmentInternalServerErrorResponse  # type: ignore
+    from ._models import FulfillmentInternalServerErrorResponseError  # type: ignore
+    from ._models import Operation  # type: ignore
+    from ._models import OperationList  # type: ignore
+    from ._models import Plan  # type: ignore
+    from ._models import ResolvedSubscription  # type: ignore
+    from ._models import SubscriberPlan  # type: ignore
+    from ._models import Subscription  # type: ignore
+    from ._models import SubscriptionPlans  # type: ignore
+    from ._models import SubscriptionTerm  # type: ignore
+    from ._models import SubscriptionsResponse  # type: ignore
+    from ._models import UpdateOperation  # type: ignore
 
-from ._metering_api_enums import (
+from ._saa_sapi_enums import (
+    AllowedCustomerOperationsEnum,
     ApiVersion,
-    UsageEventConflictResponseAdditionalInfoStatus,
-    UsageEventStatusEnum,
+    OperationActionEnum,
+    OperationStatusEnum,
+    SandboxTypeEnum,
+    SessionModeEnum,
+    SubscriptionStatusEnum,
+    UpdateOperationStatusEnum,
 )
 
 __all__ = [
-    'UsageEvent',
-    'UsageEventBadRequestResponse',
-    'UsageEventBadRequestResponseDetail',
-    'UsageEventConflictResponse',
-    'UsageEventConflictResponseAdditionalInfo',
-    'UsageEventOkResponse',
+    'AadIdentifier',
+    'FulfillmentInternalServerErrorResponse',
+    'FulfillmentInternalServerErrorResponseError',
+    'Operation',
+    'OperationList',
+    'Plan',
+    'ResolvedSubscription',
+    'SubscriberPlan',
+    'Subscription',
+    'SubscriptionPlans',
+    'SubscriptionTerm',
+    'SubscriptionsResponse',
+    'UpdateOperation',
+    'AllowedCustomerOperationsEnum',
     'ApiVersion',
-    'UsageEventConflictResponseAdditionalInfoStatus',
-    'UsageEventStatusEnum',
+    'OperationActionEnum',
+    'OperationStatusEnum',
+    'SandboxTypeEnum',
+    'SessionModeEnum',
+    'SubscriptionStatusEnum',
+    'UpdateOperationStatusEnum',
 ]

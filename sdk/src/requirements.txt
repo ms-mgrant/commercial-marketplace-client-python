@@ -1,0 +1,7 @@
+### Requirements
+msal
+azure-core
+azure-identity
+
+### Testing packages
+pytest

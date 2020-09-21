@@ -28,7 +28,8 @@ RUN	chmod +x /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/pytho
 	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install json-rpc \
 	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install m2r \
 	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install Jinja2 \
-	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install wheel
+	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install wheel \
+	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install -U pytest
 	
 	
 ENV LANG en_US.UTF-8  

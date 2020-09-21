@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._metering_api import MeteringAPI
-__all__ = ['MeteringAPI']
+from ._saa_sapi import SaaSAPI
+__all__ = ['SaaSAPI']

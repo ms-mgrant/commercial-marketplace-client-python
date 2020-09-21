@@ -26,6 +26,12 @@ class _CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name)
 
 
+class AllowedCustomerOperationsEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+
+    READ = "Read"
+    UPDATE = "Update"
+    DELETE = "Delete"
+
 class ApiVersion(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     """The request must send the following parameters as a URL Encoded form; grant_type -
     client_credentials; resource - 62d94f6c-d599-489b-a797-3e10e42fbe22; client_id - AAD Registered
@@ -35,22 +41,47 @@ class ApiVersion(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     TWO_THOUSAND_EIGHTEEN08_31 = "2018-08-31"
     TWO_THOUSAND_EIGHTEEN09_15 = "2018-09-15"
 
-class UsageEventConflictResponseAdditionalInfoStatus(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-    """Accepted|NotProcessed|Expired
+class OperationActionEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+
+    UNSUBSCRIBE = "Unsubscribe"
+    CHANGE_PLAN = "ChangePlan"
+    CHANGE_QUANTITY = "ChangeQuantity"
+    SUSPEND = "Suspend"
+    REINSTATE = "Reinstate"
+
+class OperationStatusEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+
+    NOT_STARTED = "NotStarted"
+    IN_PROGRESS = "InProgress"
+    SUCCEEDED = "Succeeded"
+    FAILED = "Failed"
+    CONFLICT = "Conflict"
+
+class SandboxTypeEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+    """Possible Values are None, Csp (Csp sandbox purchase)
     """
 
-    ACCEPTED = "Accepted"
-    NOT_PROCESSED = "NotProcessed"
-    EXPIRED = "Expired"
+    NONE = "None"
+    CSP = "Csp"
 
-class UsageEventStatusEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-    """Status of the operation.
+class SessionModeEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+    """Dry Run indicates all transactions run as Test-Mode in the commerce stack
     """
 
-    ACCEPTED = "Accepted"
-    EXPIRED = "Expired"
-    DUPLICATE = "Duplicate"
-    ERROR = "Error"
-    RESOURCE_NOT_FOUND = "ResourceNotFound"
-    RESOURCE_NOT_AUTHORIZED = "ResourceNotAuthorized"
-    INVALID_DIMENSION_BAD_ARGUMENT = "InvalidDimension|BadArgument"
+    NONE = "None"
+    DRY_RUN = "DryRun"
+
+class SubscriptionStatusEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+    """Indicates the status of the operation.
+    """
+
+    NOT_STARTED = "NotStarted"
+    PENDING_FULFILLMENT_START = "PendingFulfillmentStart"
+    SUBSCRIBED = "Subscribed"
+    SUSPENDED = "Suspended"
+    UNSUBSCRIBED = "Unsubscribed"
+
+class UpdateOperationStatusEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+
+    SUCCESS = "Success"
+    FAILURE = "Failure"

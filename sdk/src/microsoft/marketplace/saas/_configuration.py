@@ -19,8 +19,8 @@ if TYPE_CHECKING:
 
 VERSION = "unknown"
 
-class MeteringAPIConfiguration(Configuration):
-    """Configuration for MeteringAPI.
+class SaaSAPIConfiguration(Configuration):
+    """Configuration for SaaSAPI.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -37,12 +37,12 @@ class MeteringAPIConfiguration(Configuration):
         # type: (...) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-        super(MeteringAPIConfiguration, self).__init__(**kwargs)
+        super(SaaSAPIConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.api_version = "2018-08-31"
         self.credential_scopes = kwargs.pop('credential_scopes', ['20e940b3-4c77-4b0b-9a53-9e16a1b010a7/.default'])
-        kwargs.setdefault('sdk_moniker', 'meteringapi/{}'.format(VERSION))
+        kwargs.setdefault('sdk_moniker', 'saasapi/{}'.format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

@@ -6,8 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._metering_operations_operations import MeteringOperationsOperations
+from ._fulfillment_operations_operations import FulfillmentOperationsOperations
+from ._subscription_operations_operations import SubscriptionOperationsOperations
 
 __all__ = [
-    'MeteringOperationsOperations',
+    'FulfillmentOperationsOperations',
+    'SubscriptionOperationsOperations',
 ]
