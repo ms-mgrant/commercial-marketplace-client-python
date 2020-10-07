@@ -3,6 +3,7 @@ msal
 azure-core
 azure-identity
 msrest
+cryptography >= 2.5
 
 ### Testing packages
 pytest

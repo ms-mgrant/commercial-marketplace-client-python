@@ -1,6 +1,6 @@
 docker build -t local/autorestpython .
 
-# Powershell 7 continues to have an issue with calling
+# Powershell up through 7.03 continues to have an issue with calling
 # Remove-Item -Recurse 
 # on folders that live in a OneDrive folder. The following code
 # is functionally equivalent to Remove-Item and does not suffer
