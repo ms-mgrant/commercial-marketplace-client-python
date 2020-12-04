@@ -1,0 +1,41 @@
+FROM ubuntu:focal 
+
+LABEL maintainer="local" 
+
+RUN apt-get update \
+	&& apt-get install -y software-properties-common \
+	&& add-apt-repository ppa:deadsnakes/ppa \
+	&& apt-get update \
+	&& apt-get install -y curl \
+	&& apt-get install -y libunwind8 
+
+RUN apt-get install -y python3.8 \
+	&& curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+	&& apt-get install -y nodejs \ 
+	&& npm install npm@latest -g \
+	&& apt-get install -y python3-pip \
+	&& npm install -g autorest@latest \
+	&& apt-get install -y locales \
+	&& locale-gen en_US.UTF-8  
+RUN	ln -s /usr/bin/python3.8 /usr/bin/python \
+	&& apt-get install -y python3-venv \
+	&& autorest --allow-no-input --python --v3 --azure-validator --use:@autorest/python@5.3.2 --preview
+
+RUN /usr/bin/python -m venv /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python
+RUN	chmod +x /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/activate \
+	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/activate \
+	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install pyyaml \
+	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install json-rpc \
+	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install m2r \
+	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install Jinja2 \
+	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install wheel \
+	&& /root/.autorest/@autorest_python@5.3.2/node_modules/@autorest/python/venv/bin/pip3 install -U pytest
+	
+	
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8  
+#COPY setupvenv.sh setupvenv.sh
+#RUN chmod +x setupvenv.sh
+
+ENTRYPOINT ["autorest"]
