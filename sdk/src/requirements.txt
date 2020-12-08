@@ -2,8 +2,10 @@
 msal
 azure-core
 azure-identity
+azure-mgmt-subscription
+azure-mgmt-resource
 msrest
-cryptography >= 2.5
+
 
 ### Testing packages
 pytest

@@ -6,19 +6,16 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import datetime
-from typing import List, Optional, Union
-
 import msrest.serialization
-
-from ._metering_api_enums import *
 
 
 class UsageEvent(msrest.serialization.Model):
     """UsageEvent.
 
-    :param resource_id: Subscription ID for the event.
+    :param resource_id: Subscription ID for the event. Used with SaaS applications.
     :type resource_id: str
+    :param resource_uri: Resource URI for the managed app. Used with managed applications.
+    :type resource_uri: str
     :param quantity: Number of units consumed.
     :type quantity: long
     :param dimension: Dimension identifier.
@@ -31,6 +28,7 @@ class UsageEvent(msrest.serialization.Model):
 
     _attribute_map = {
         'resource_id': {'key': 'resourceId', 'type': 'str'},
+        'resource_uri': {'key': 'resourceUri', 'type': 'str'},
         'quantity': {'key': 'quantity', 'type': 'long'},
         'dimension': {'key': 'dimension', 'type': 'str'},
         'effective_start_time': {'key': 'effectiveStartTime', 'type': 'iso-8601'},
@@ -39,20 +37,15 @@ class UsageEvent(msrest.serialization.Model):
 
     def __init__(
         self,
-        *,
-        resource_id: Optional[str] = None,
-        quantity: Optional[int] = None,
-        dimension: Optional[str] = None,
-        effective_start_time: Optional[datetime.datetime] = None,
-        plan_id: Optional[str] = None,
         **kwargs
     ):
         super(UsageEvent, self).__init__(**kwargs)
-        self.resource_id = resource_id
-        self.quantity = quantity
-        self.dimension = dimension
-        self.effective_start_time = effective_start_time
-        self.plan_id = plan_id
+        self.resource_id = kwargs.get('resource_id', None)
+        self.resource_uri = kwargs.get('resource_uri', None)
+        self.quantity = kwargs.get('quantity', None)
+        self.dimension = kwargs.get('dimension', None)
+        self.effective_start_time = kwargs.get('effective_start_time', None)
+        self.plan_id = kwargs.get('plan_id', None)
 
 
 class UsageEventBadRequestResponse(msrest.serialization.Model):
@@ -77,18 +70,13 @@ class UsageEventBadRequestResponse(msrest.serialization.Model):
 
     def __init__(
         self,
-        *,
-        code: Optional[str] = None,
-        message: Optional[str] = None,
-        target: Optional[str] = None,
-        details: Optional[List["UsageEventBadRequestResponseDetail"]] = None,
         **kwargs
     ):
         super(UsageEventBadRequestResponse, self).__init__(**kwargs)
-        self.code = code
-        self.message = message
-        self.target = target
-        self.details = details
+        self.code = kwargs.get('code', None)
+        self.message = kwargs.get('message', None)
+        self.target = kwargs.get('target', None)
+        self.details = kwargs.get('details', None)
 
 
 class UsageEventBadRequestResponseDetail(msrest.serialization.Model):
@@ -110,16 +98,12 @@ class UsageEventBadRequestResponseDetail(msrest.serialization.Model):
 
     def __init__(
         self,
-        *,
-        code: Optional[str] = None,
-        message: Optional[str] = None,
-        target: Optional[str] = None,
         **kwargs
     ):
         super(UsageEventBadRequestResponseDetail, self).__init__(**kwargs)
-        self.code = code
-        self.message = message
-        self.target = target
+        self.code = kwargs.get('code', None)
+        self.message = kwargs.get('message', None)
+        self.target = kwargs.get('target', None)
 
 
 class UsageEventConflictResponse(msrest.serialization.Model):
@@ -139,14 +123,11 @@ class UsageEventConflictResponse(msrest.serialization.Model):
 
     def __init__(
         self,
-        *,
-        code: Optional[str] = None,
-        additional_info: Optional["UsageEventConflictResponseAdditionalInfo"] = None,
         **kwargs
     ):
         super(UsageEventConflictResponse, self).__init__(**kwargs)
-        self.code = code
-        self.additional_info = additional_info
+        self.code = kwargs.get('code', None)
+        self.additional_info = kwargs.get('additional_info', None)
 
 
 class UsageEventConflictResponseAdditionalInfo(msrest.serialization.Model):
@@ -162,6 +143,8 @@ class UsageEventConflictResponseAdditionalInfo(msrest.serialization.Model):
     :type message_time: ~datetime.datetime
     :param resource_id: Identifier of the resource against which usage is emitted.
     :type resource_id: str
+    :param resource_uri: Identifier of the managed app resource against which usage is emitted.
+    :type resource_uri: str
     :param quantity:
     :type quantity: long
     :param dimension: Dimension identifier.
@@ -177,6 +160,7 @@ class UsageEventConflictResponseAdditionalInfo(msrest.serialization.Model):
         'status': {'key': 'status', 'type': 'str'},
         'message_time': {'key': 'messageTime', 'type': 'iso-8601'},
         'resource_id': {'key': 'resourceId', 'type': 'str'},
+        'resource_uri': {'key': 'resourceUri', 'type': 'str'},
         'quantity': {'key': 'quantity', 'type': 'long'},
         'dimension': {'key': 'dimension', 'type': 'str'},
         'effective_start_time': {'key': 'effectiveStartTime', 'type': 'iso-8601'},
@@ -185,26 +169,18 @@ class UsageEventConflictResponseAdditionalInfo(msrest.serialization.Model):
 
     def __init__(
         self,
-        *,
-        usage_event_id: Optional[str] = None,
-        status: Optional[Union[str, "UsageEventConflictResponseAdditionalInfoStatus"]] = None,
-        message_time: Optional[datetime.datetime] = None,
-        resource_id: Optional[str] = None,
-        quantity: Optional[int] = None,
-        dimension: Optional[str] = None,
-        effective_start_time: Optional[datetime.datetime] = None,
-        plan_id: Optional[str] = None,
         **kwargs
     ):
         super(UsageEventConflictResponseAdditionalInfo, self).__init__(**kwargs)
-        self.usage_event_id = usage_event_id
-        self.status = status
-        self.message_time = message_time
-        self.resource_id = resource_id
-        self.quantity = quantity
-        self.dimension = dimension
-        self.effective_start_time = effective_start_time
-        self.plan_id = plan_id
+        self.usage_event_id = kwargs.get('usage_event_id', None)
+        self.status = kwargs.get('status', None)
+        self.message_time = kwargs.get('message_time', None)
+        self.resource_id = kwargs.get('resource_id', None)
+        self.resource_uri = kwargs.get('resource_uri', None)
+        self.quantity = kwargs.get('quantity', None)
+        self.dimension = kwargs.get('dimension', None)
+        self.effective_start_time = kwargs.get('effective_start_time', None)
+        self.plan_id = kwargs.get('plan_id', None)
 
 
 class UsageEventOkResponse(msrest.serialization.Model):
@@ -220,6 +196,8 @@ class UsageEventOkResponse(msrest.serialization.Model):
     :type message_time: ~datetime.datetime
     :param resource_id: Identifier of the resource against which usage is emitted.
     :type resource_id: str
+    :param resource_uri: Identifier of the managed app resource against which usage is emitted.
+    :type resource_uri: str
     :param quantity: Number of units consumed.
     :type quantity: long
     :param dimension: Dimension identifier.
@@ -235,6 +213,7 @@ class UsageEventOkResponse(msrest.serialization.Model):
         'status': {'key': 'status', 'type': 'str'},
         'message_time': {'key': 'messageTime', 'type': 'iso-8601'},
         'resource_id': {'key': 'resourceId', 'type': 'str'},
+        'resource_uri': {'key': 'resourceUri', 'type': 'str'},
         'quantity': {'key': 'quantity', 'type': 'long'},
         'dimension': {'key': 'dimension', 'type': 'str'},
         'effective_start_time': {'key': 'effectiveStartTime', 'type': 'iso-8601'},
@@ -243,23 +222,15 @@ class UsageEventOkResponse(msrest.serialization.Model):
 
     def __init__(
         self,
-        *,
-        usage_event_id: Optional[str] = None,
-        status: Optional[Union[str, "UsageEventStatusEnum"]] = None,
-        message_time: Optional[datetime.datetime] = None,
-        resource_id: Optional[str] = None,
-        quantity: Optional[int] = None,
-        dimension: Optional[str] = None,
-        effective_start_time: Optional[datetime.datetime] = None,
-        plan_id: Optional[str] = None,
         **kwargs
     ):
         super(UsageEventOkResponse, self).__init__(**kwargs)
-        self.usage_event_id = usage_event_id
-        self.status = status
-        self.message_time = message_time
-        self.resource_id = resource_id
-        self.quantity = quantity
-        self.dimension = dimension
-        self.effective_start_time = effective_start_time
-        self.plan_id = plan_id
+        self.usage_event_id = kwargs.get('usage_event_id', None)
+        self.status = kwargs.get('status', None)
+        self.message_time = kwargs.get('message_time', None)
+        self.resource_id = kwargs.get('resource_id', None)
+        self.resource_uri = kwargs.get('resource_uri', None)
+        self.quantity = kwargs.get('quantity', None)
+        self.dimension = kwargs.get('dimension', None)
+        self.effective_start_time = kwargs.get('effective_start_time', None)
+        self.plan_id = kwargs.get('plan_id', None)

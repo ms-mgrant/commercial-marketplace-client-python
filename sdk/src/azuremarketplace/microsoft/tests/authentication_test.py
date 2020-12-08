@@ -5,24 +5,10 @@ from azure.identity import CertificateCredential, ClientSecretCredential
 
 from src.microsoft.marketplace.saas import SaaSAPI
 from src.microsoft.marketplace.saas.models import SubscriptionStatusEnum
-
-
-def get_client_secret_credential():
-    tenant_id = os.environ["AAD_TENANT_ID"]
-    client_id = os.environ["AAD_APP_CLIENT_ID"]
-    client_secret = os.environ["AAD_APP_CLIENT_SECRET"]
-
-    cred = ClientSecretCredential(
-        tenant_id=tenant_id,
-        client_id=client_id,
-        client_secret=client_secret
-    )
-
-    return cred
+from src.microsoft.tests.common import get_client_secret_credential
 
 
 def test_get_subscriptions():
-
     saas = SaaSAPI(get_client_secret_credential())
     subscription_found = False
     subscriptions = saas.fulfillment_operations.list_subscriptions()
