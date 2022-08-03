@@ -19,14 +19,14 @@
   },
   "security": [
     {
-      "azure_auth": ["user_impersonation"]
+      "azure_auth": [ "user_impersonation" ]
     }
   ],
 
   "paths": {
     "/saas/subscriptions/resolve": {
       "post": {
-        "tags": ["FulfillmentOperations"],
+        "tags": [ "FulfillmentOperations" ],
         "summary": "Resolve a subscription",
         "operationId": "FulfillmentOperations_Resolve",
         "description": "The resolve endpoint enables the publisher to resolve a marketplace token to a persistent resource ID. The resource ID is the unique identifier for a SaaS subscription. When a user is redirected to a partner's website, the URL contains a token in the query parameters. The partner is expected to use this token and make a request to resolve it. The response contains the unique SaaS subscription ID, name, offer ID, and plan for the resource. This token is valid for one hour only.",
@@ -84,16 +84,20 @@
             }
           },
           "400": {
-            "description": "Bad request. x-ms-marketplace-token is missing, malformed, or expired."
+            "description": "Bad request. x-ms-marketplace-token is missing, malformed, or expired.",
+            "x-ms-error-response": true
           },
           "403": {
-            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher."
+            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher.",
+            "x-ms-error-response": true
           },
           "404": {
-            "description": "Not found."
+            "description": "Not found.",
+            "x-ms-error-response": true
           },
           "500": {
-            "description": "Internal server error."
+            "description": "Internal server error.",
+            "x-ms-error-response": true
           }
         }
       }
@@ -102,7 +106,7 @@
       "get": {
         "summary": "List subscriptions",
         "description": "Lists all the SaaS subscriptions for a publisher.",
-        "tags": ["FulfillmentOperations"],
+        "tags": [ "FulfillmentOperations" ],
         "operationId": "FulfillmentOperations_ListSubscriptions",
         "parameters": [
           {
@@ -161,10 +165,12 @@
             }
           },
           "403": {
-            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher."
+            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher.",
+            "x-ms-error-response": true
           },
           "500": {
-            "description": "Internal server error."
+            "description": "Internal server error.",
+            "x-ms-error-response": true
           }
         }
       }
@@ -174,7 +180,7 @@
         "summary": "Get subscription",
         "description": "Gets the specified SaaS subscription. Use this call to get license information and plan information.",
         "operationId": "FulfillmentOperations_GetSubscription",
-        "tags": ["FulfillmentOperations"],
+        "tags": [ "FulfillmentOperations" ],
         "parameters": [
           {
             "in": "path",
@@ -229,13 +235,16 @@
             }
           },
           "403": {
-            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher."
+            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher.",
+            "x-ms-error-response": true
           },
           "404": {
-            "description": "Not found."
+            "description": "Not found.",
+            "x-ms-error-response": true
           },
           "500": {
-            "description": "Internal server error."
+            "description": "Internal server error.",
+            "x-ms-error-response": true
           }
         }
       },
@@ -243,7 +252,7 @@
         "summary": "Patch a subscription",
         "description": "Use this call to update the plan, the user count (quantity), or both.",
         "operationId": "FulfillmentOperations_UpdateSubscription",
-        "tags": ["FulfillmentOperations"],
+        "tags": [ "FulfillmentOperations" ],
         "parameters": [
           {
             "in": "path",
@@ -310,16 +319,20 @@
             }
           },
           "400": {
-            "description": "Bad request. Validation failures."
+            "description": "Bad request. Validation failures.",
+            "x-ms-error-response": true
           },
           "403": {
-            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher."
+            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher.",
+            "x-ms-error-response": true
           },
           "404": {
-            "description": "Not found."
+            "description": "Not found.",
+            "x-ms-error-response": true
           },
           "500": {
-            "description": "Internal server error."
+            "description": "Internal server error.",
+            "x-ms-error-response": true
           }
         }
       },
@@ -327,7 +340,7 @@
         "summary": "Delete a subscription",
         "description": "Unsubscribe and delete the specified subscription.",
         "operationId": "FulfillmentOperations_DeleteSubscription",
-        "tags": ["FulfillmentOperations"],
+        "tags": [ "FulfillmentOperations" ],
         "parameters": [
           {
             "in": "path",
@@ -384,16 +397,20 @@
             }
           },
           "400": {
-            "description": "Delete on a subscription with Delete not in allowedCustomerOperations."
+            "description": "Delete on a subscription with Delete not in allowedCustomerOperations.",
+            "x-ms-error-response": true
           },
           "403": {
-            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher."
+            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher.",
+            "x-ms-error-response": true
           },
           "404": {
-            "description": "Not found."
+            "description": "Not found.",
+            "x-ms-error-response": true
           },
           "500": {
-            "description": "Internal server error."
+            "description": "Internal server error.",
+            "x-ms-error-response": true
           }
         }
       }
@@ -403,7 +420,7 @@
         "summary": "List available plans",
         "description": "Use this call to find out if there are any private or public offers for the current publisher.",
         "operationId": "FulfillmentOperations_ListAvailablePlans",
-        "tags": ["FulfillmentOperations"],
+        "tags": [ "FulfillmentOperations" ],
         "parameters": [
           {
             "in": "path",
@@ -458,13 +475,16 @@
             }
           },
           "403": {
-            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher."
+            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher.",
+            "x-ms-error-response": true
           },
           "404": {
-            "description": "Not found."
+            "description": "Not found.",
+            "x-ms-error-response": true
           },
           "500": {
-            "description": "Internal server error."
+            "description": "Internal server error.",
+            "x-ms-error-response": true
           }
         }
       }
@@ -474,7 +494,7 @@
         "summary": "Activate a subscription",
         "description": "Use this call to activate a subscription.",
         "operationId": "FulfillmentOperations_ActivateSubscription",
-        "tags": ["FulfillmentOperations"],
+        "tags": [ "FulfillmentOperations" ],
         "parameters": [
           {
             "in": "path",
@@ -532,16 +552,20 @@
             "description": "Activates the subscription."
           },
           "400": {
-            "description": "Bad request. Validation failures."
+            "description": "Bad request. Validation failures.",
+            "x-ms-error-response": true
           },
           "403": {
-            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher."
+            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher.",
+            "x-ms-error-response": true
           },
           "404": {
-            "description": "Not found."
+            "description": "Not found.",
+            "x-ms-error-response": true
           },
           "500": {
-            "description": "Internal server error."
+            "description": "Internal server error.",
+            "x-ms-error-response": true
           }
         }
       }
@@ -551,7 +575,7 @@
         "summary": "List outstanding operations",
         "description": "Lists the outstanding operations for the current publisher.",
         "operationId": "SubscriptionOperations_ListOperations",
-        "tags": ["SubscriptionOperations"],
+        "tags": [ "SubscriptionOperations" ],
         "parameters": [
           {
             "in": "path",
@@ -606,16 +630,20 @@
             }
           },
           "400": {
-            "description": "Bad request; validation failures."
+            "description": "Bad request; validation failures.",
+            "x-ms-error-response": true
           },
           "403": {
-            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher."
+            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher.",
+            "x-ms-error-response": true
           },
           "404": {
-            "description": "Not found."
+            "description": "Not found.",
+            "x-ms-error-response": true
           },
           "500": {
-            "description": "Internal server error."
+            "description": "Internal server error.",
+            "x-ms-error-response": true
           }
         }
       }
@@ -625,7 +653,7 @@
         "summary": "Get operation status",
         "description": "Enables the publisher to track the status of the specified triggered async operation (such as Subscribe, Unsubscribe, ChangePlan, or ChangeQuantity).",
         "operationId": "SubscriptionOperations_GetOperationStatus",
-        "tags": ["SubscriptionOperations"],
+        "tags": [ "SubscriptionOperations" ],
         "parameters": [
           {
             "in": "path",
@@ -689,16 +717,20 @@
             }
           },
           "400": {
-            "description": "Bad request; validation failures."
+            "description": "Bad request; validation failures.",
+            "x-ms-error-response": true
           },
           "403": {
-            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher."
+            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher.",
+            "x-ms-error-response": true
           },
           "404": {
-            "description": "Not found."
+            "description": "Not found.",
+            "x-ms-error-response": true
           },
           "500": {
-            "description": "Internal server error."
+            "description": "Internal server error.",
+            "x-ms-error-response": true
           }
         }
       },
@@ -706,7 +738,7 @@
         "summary": "Update the status of an operation",
         "description": "Update the status of an operation to indicate success or failure with the provided values.",
         "operationId": "SubscriptionOperations_UpdateOperationStatus",
-        "tags": ["SubscriptionOperations"],
+        "tags": [ "SubscriptionOperations" ],
         "parameters": [
           {
             "in": "path",
@@ -773,19 +805,24 @@
             "description": "A call to inform of completion of an operation on the partner side. For example, this response could signal the change of seats or plans."
           },
           "400": {
-            "description": "Bad request; validation failures."
+            "description": "Bad request; validation failures.",
+            "x-ms-error-response": true
           },
           "403": {
-            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher."
+            "description": "Unauthorized. The authentication token was not provided or is invalid, or the request is attempting to access an acquisition that does not belong to the current publisher.",
+            "x-ms-error-response": true
           },
           "404": {
-            "description": "Not found."
+            "description": "Not found.",
+            "x-ms-error-response": true
           },
           "409": {
-            "description": "Conflict. For example, a newer transaction is already fulfilled."
+            "description": "Conflict. For example, a newer transaction is already fulfilled.",
+            "x-ms-error-response": true
           },
           "500": {
-            "description": "Internal server error."
+            "description": "Internal server error.",
+            "x-ms-error-response": true
           }
         }
       }
@@ -806,8 +843,8 @@
     "schemas": {
       "ApiVersion": {
         "type": "string",
-        "description": "The request must send the following parameters as a URL Encoded form; grant_type - client_credentials; resource - 62d94f6c-d599-489b-a797-3e10e42fbe22; client_id - AAD Registered App Client ID; client_secret - AAD Registered App Client Secret",
-        "enum": ["2018-08-31", "2018-09-15"],
+        "description": "The request must send the following parameters as a URL Encoded form; grant_type - client_credentials; resource - 20e940b3-4c77-4b0b-9a53-9e16a1b010a7; client_id - AAD Registered App Client ID; client_secret - AAD Registered App Client Secret",
+        "enum": [ "2018-08-31" ],
         "default": "2018-08-31"
       },
       "ResolvedSubscription": {
@@ -909,6 +946,10 @@
               }
             }
           },
+          "autoRenew": {
+            "type": "boolean",
+            "description": "Indicating whether the subscription will renew automatically."
+          },
           "isTest": {
             "type": "boolean",
             "description": "Indicating whether the current subscription is a test asset."
@@ -921,7 +962,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["Read", "Update", "Delete"],
+              "enum": [ "Read", "Update", "Delete" ],
               "x-ms-enum": {
                 "name": "AllowedCustomerOperationsEnum",
                 "modelAsString": false
@@ -939,21 +980,25 @@
           "storeFront": {
             "type": "string"
           },
-          "sessionMode": {
-            "type": "string",
-            "description": "Dry Run indicates all transactions run as Test-Mode in the commerce stack",
-            "enum": ["None", "DryRun"],
-            "x-ms-enum": {
-              "name": "SessionModeEnum",
-              "modelAsString": false
-            }
-          },
           "sandboxType": {
             "type": "string",
             "description": "Possible Values are None, Csp (Csp sandbox purchase)",
-            "enum": ["None", "Csp"],
+            "enum": [ "None", "Csp" ],
             "x-ms-enum": {
               "name": "SandboxTypeEnum",
+              "modelAsString": false
+            }
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sessionMode": {
+            "type": "string",
+            "description": "Dry Run indicates all transactions run as Test-Mode in the commerce stack",
+            "enum": [ "None", "DryRun" ],
+            "x-ms-enum": {
+              "name": "SessionModeEnum",
               "modelAsString": false
             }
           }
@@ -1001,6 +1046,97 @@
           },
           "isPrivate": {
             "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          },
+          "hasFreeTrials": {
+            "type": "boolean"
+          },
+          "isPricePerSeat": {
+            "type": "boolean"
+          },
+          "isStopSell": {
+            "type": "boolean"
+          },
+          "market": {
+            "type": "string"
+          },
+          "planComponents": {
+            "type": "object",
+            "properties": {
+              "recurrentBillingTerms": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RecurrentBillingTerm"
+                }
+              },
+              "meteringDimensions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MeteringDimension"
+                }
+              }
+            }
+          }
+        }
+      },
+      "RecurrentBillingTerm": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "termUnit": {
+            "type": "string",
+            "enum": [ "P1M", "P1Y" ],
+            "x-ms-enum": {
+              "name": "TermUnitEnum",
+              "modelAsString": false
+            }
+          },
+          "termDescription": {
+            "type": "string"
+          },
+          "meteredQuantityIncluded": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MeteringedQuantityIncluded"
+            }
+          }
+        }
+      },
+      "MeteringedQuantityIncluded": {
+        "type": "object",
+        "properties": {
+          "dimensionId": {
+            "type": "string"
+          },
+          "units": {
+            "type": "string"
+          }
+        }
+      },
+      "MeteringDimension": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "pricePerUnit": {
+            "type": "number"
+          },
+          "unitOfMeasure": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
           }
         }
       },
@@ -1044,7 +1180,7 @@
           },
           "status": {
             "type": "string",
-            "enum": ["Success", "Failure"],
+            "enum": [ "Success", "Failure" ],
             "x-ms-enum": {
               "name": "UpdateOperationStatusEnum",
               "modelAsString": false
