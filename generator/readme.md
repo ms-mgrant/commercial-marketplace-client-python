@@ -30,7 +30,7 @@ openapi-type: arm
 
 ```yaml
 input-file:
-  - ./marketplace.json
+  - ./saasapi.v2.json
 ```
 
 # Code Generation
